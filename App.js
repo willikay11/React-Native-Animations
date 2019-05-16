@@ -113,44 +113,56 @@ render () {
   // })
 
   return (
-    <View style={{ flexDirection: 'row', margin: 10 }}>
-      <View style={{ backgroundColor: '#dfdfdf' }}>
-        <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
-          <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100 }}>
-          </View>
-        </Animated.View>
-      </View>
-
-      <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'transparent' }}>
-        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5 }}>
+    <View style={{ flex: 1, flexDirection: 'column', margin: 10 }}>
+      <View style={{ flexDirection: 'row' }}>
+        {/* Square */}
+        <View style={{ backgroundColor: '#dfdfdf' }}>
           <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+            <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100 }}>
             </View>
           </Animated.View>
         </View>
 
-        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-            </View>
-          </Animated.View>
-        </View>
+        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'transparent' }}>
+        {/* Rectangle */}
+          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5 }}>
+            <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
+              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+              </View>
+            </Animated.View>
+          </View>
 
-        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-            </View>
-          </Animated.View>
-        </View>
+          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+              </View>
+            </Animated.View>
+          </View>
 
-        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+              </View>
+            </Animated.View>
+          </View>
+
+          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+              </View>
+            </Animated.View>
+          </View>
+        </View>
+      </View>
+
+      <View style={{ flexDirection: 'row', marginTop: 10 }}>
+        <View style={{ backgroundColor: '#dfdfdf', borderRadius: 50 }}>
+          <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
+            <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100, borderRadius: 50 }}>
             </View>
           </Animated.View>
         </View>
       </View>
-
     </View>
   )
 }
