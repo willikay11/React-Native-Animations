@@ -59,7 +59,7 @@ export default class App extends Component<Props> {
   }
 
   componentDidMount () {
-    this.fadeIn()
+    this.fadeIn();
   }
 
   fadeIn () {
@@ -162,7 +162,7 @@ const Rectangle = (props) => {
 const Circle = (props) => {
   return (
     <View style={{ flexDirection: 'row'}}>
-      <View style={{ backgroundColor: props.color, borderRadius: 50 }}>
+      <View style={{ backgroundColor: props.color, borderRadius: parseInt(props.size, 10)/2 }}>
         <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
           <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
           </View>
