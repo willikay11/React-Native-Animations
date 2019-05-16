@@ -14,19 +14,23 @@ import {
   View,
   Animated,
   Image,
-  Easing
+  Easing,
+  TouchableOpacity
 } from 'react-native'
-
 
 export default class App extends Component<Props> {
 
   constructor () {
     super()
-    this.animatedValue = new Animated.Value(0)
+    // this.animatedValue = new Animated.Value(0)
+    this.state = {
+      fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
+    }
+    this.fadeOut = this.fadeOut.bind(this);
   }
 
   componentDidMount () {
-    this.animate()
+    this.fadeIn()
   }
 
   spin () {
@@ -53,81 +57,100 @@ export default class App extends Component<Props> {
     ).start(() => this.animate())
   }
 
+  fadeIn () {
+    Animated.timing(          // Animate over time
+      this.state.fadeAnim,    // The animated value to drive
+      {
+        toValue: 1,           // Animate to opacity: 1 (opaque)
+        duration: 1000,       // 2000ms
+        easing: Easing.linear
+      }
+    ).start(() => this.fadeOut());            
+  }
+
+  fadeOut() {
+    this.setState({ fadeAnim: new Animated.Value(1) },
+    () => {
+      Animated.timing(          // Animate over time
+        this.state.fadeAnim, // The animated value to drive
+        {
+          toValue: 0,           // Animate to opacity: 1 (opaque)
+          duration: 1000,       // 2000ms
+          easing: Easing.linear
+        }
+      ).start(() => this.fadeIn());
+    })              // Starts the animation
+  }
+
+
 render () {
+  let { fadeAnim } = this.state;
+
   // const spin = this.spinValue.interpolate({
   //   inputRange: [0, 1],
   //   outputRange: ['0deg', '360deg']
   // });
 
-  const marginLeft = this.animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 400]
-  })
-  const opacity = this.animatedValue.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [0, 1, 0]
-  })
-  const movingMargin = this.animatedValue.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [0, 300, 0]
-  })
-  const textSize = this.animatedValue.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: [18, 32, 18]
-  })
-  const rotateX = this.animatedValue.interpolate({
-    inputRange: [0, 0.5, 1],
-    outputRange: ['0deg', '180deg', '0deg']
-  })
+  // const marginLeft = this.animatedValue.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: [0, 400]
+  // })
+  // const opacity = this.animatedValue.interpolate({
+  //   inputRange: [0, 0.5, 1],
+  //   outputRange: [0, 1, 0]
+  // })
+  // const movingMargin = this.animatedValue.interpolate({
+  //   inputRange: [0, 0.5, 1],
+  //   outputRange: [0, 300, 0]
+  // })
+  // const textSize = this.animatedValue.interpolate({
+  //   inputRange: [0, 0.5, 1],
+  //   outputRange: [18, 32, 18]
+  // })
+  // const rotateX = this.animatedValue.interpolate({
+  //   inputRange: [0, 0.5, 1],
+  //   outputRange: ['0deg', '180deg', '0deg']
+  // })
 
   return (
-    <View style={styles.container}>
-      {/* <Animated.Image
-        style={{
-          width: 227,
-          height: 200,
-          transform: [{rotate: spin}] }}
-          source={{uri: 'https://s3.amazonaws.com/media-p.slid.es/uploads/alexanderfarennikov/images/1198519/reactjs.png'}}
-      /> */}
-
-      <View style={{ width: '100%', backgroundColor: '#E2E2E2' }}>
-        <Animated.View
-          style={{
-            marginLeft,
-            height: 30,
-            width: 10,
-            backgroundColor: 'rgba(255, 255, 255, .1)'}} />
+    <View style={{ flexDirection: 'row', margin: 10 }}>
+      <View style={{ backgroundColor: '#dfdfdf' }}>
+        <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
+          <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100 }}>
+          </View>
+        </Animated.View>
       </View>
-      <Animated.View
-        style={{
-          opacity,
-          marginTop: 10,
-          height: 30,
-          width: 40,
-          backgroundColor: 'blue'}} />
-      <Animated.View
-        style={{
-          marginLeft: movingMargin,
-          marginTop: 10,
-          height: 30,
-          width: 40,
-          backgroundColor: 'orange'}} />
-      <Animated.Text
-        style={{
-          fontSize: textSize,
-          marginTop: 10,
-          color: 'green'}} >
-          Animated Text!
-      </Animated.Text>
-      <Animated.View
-        style={{
-          transform: [{rotateX}],
-          marginTop: 50,
-          height: 30,
-          width: 40,
-          backgroundColor: 'black'}}>
-        <Text style={{color: 'white'}}>Hello from TransformX</Text>
-      </Animated.View>
+
+      <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'transparent' }}>
+        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5 }}>
+          <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
+            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+            </View>
+          </Animated.View>
+        </View>
+
+        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+            </View>
+          </Animated.View>
+        </View>
+
+        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+            </View>
+          </Animated.View>
+        </View>
+
+        <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
+          <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
+            <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
+            </View>
+          </Animated.View>
+        </View>
+      </View>
+
     </View>
   )
 }
