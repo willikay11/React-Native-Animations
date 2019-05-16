@@ -18,11 +18,40 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+function lightenOrDarkenColor(col, amt) {
+  
+  var usePound = false;
+
+  if (col[0] == "#") {
+      col = col.slice(1);
+      usePound = true;
+  }
+
+  var num = parseInt(col,16);
+
+  var r = (num >> 16) + amt;
+
+  if (r > 255) r = 255;
+  else if  (r < 0) r = 0;
+
+  var b = ((num >> 8) & 0x00FF) + amt;
+
+  if (b > 255) b = 255;
+  else if  (b < 0) b = 0;
+
+  var g = (num & 0x0000FF) + amt;
+
+  if (g > 255) g = 255;
+  else if (g < 0) g = 0;
+
+  return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+
+}
+
 export default class App extends Component<Props> {
 
   constructor () {
-    super()
-    // this.animatedValue = new Animated.Value(0)
+    super();
     this.state = {
       fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
     }
@@ -31,30 +60,6 @@ export default class App extends Component<Props> {
 
   componentDidMount () {
     this.fadeIn()
-  }
-
-  spin () {
-    this.spinValue.setValue(0)
-    Animated.timing(
-      this.spinValue,
-      {
-        toValue: 1,
-        duration: 4000,
-        easing: Easing.linear
-      }
-    ).start(() => this.spin())
-  }
-
-  animate () {
-    this.animatedValue.setValue(0)
-    Animated.timing(
-      this.animatedValue,
-      {
-        toValue: 1,
-        duration: 5000,
-        easing: Easing.linear
-      }
-    ).start(() => this.animate())
   }
 
   fadeIn () {
@@ -83,8 +88,8 @@ export default class App extends Component<Props> {
   }
 
 
-render () {
-  let { fadeAnim } = this.state;
+  render () {
+    let { fadeAnim } = this.state;
 
   // const spin = this.spinValue.interpolate({
   //   inputRange: [0, 1],
@@ -112,60 +117,59 @@ render () {
   //   outputRange: ['0deg', '180deg', '0deg']
   // })
 
-  return (
-    <View style={{ flex: 1, flexDirection: 'column', margin: 10 }}>
-      <View style={{ flexDirection: 'row' }}>
-        {/* Square */}
-        <View style={{ backgroundColor: '#dfdfdf' }}>
-          <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100 }}>
-            </View>
-          </Animated.View>
-        </View>
+    return (
+      <View style={{ flex: 1, flexDirection: 'column', margin: 10 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <Square fadeAnim={fadeAnim} color={'#dfdfdf'} height={100} width={100} />
 
-        <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'transparent' }}>
-        {/* Rectangle */}
-          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5 }}>
-            <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
-              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-              </View>
-            </Animated.View>
-          </View>
-
-          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-              </View>
-            </Animated.View>
-          </View>
-
-          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-              </View>
-            </Animated.View>
-          </View>
-
-          <View style={{ backgroundColor: '#dfdfdf', marginLeft: 5, marginTop: 10 }}>
-            <Animated.View style={{ ...this.props.style,  opacity: fadeAnim }} >
-              <View style = {{ backgroundColor: '#c8c8c8', height: 15 }}>
-              </View>
-            </Animated.View>
+          <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'transparent' }}>
+            <Rectangle fadeAnim={fadeAnim} color={'#dfdfdf'} height={15} />
+            <Rectangle fadeAnim={fadeAnim} color={'#dfdfdf'} height={15} />
+            <Rectangle fadeAnim={fadeAnim} color={'#dfdfdf'} height={15} />
+            <Rectangle fadeAnim={fadeAnim} color={'#dfdfdf'} height={15} />
+            <Rectangle fadeAnim={fadeAnim} color={'#dfdfdf'} height={15} />
           </View>
         </View>
+
+        <Circle fadeAnim={fadeAnim} color={'#dfdfdf'} size={100} />
       </View>
+    );
+  }
+}
 
-      <View style={{ flexDirection: 'row', marginTop: 10 }}>
-        <View style={{ backgroundColor: '#dfdfdf', borderRadius: 50 }}>
-          <Animated.View style={{ ...this.props.style, opacity: fadeAnim }} >
-            <View style = {{ backgroundColor: '#c8c8c8', height: 100, width: 100, borderRadius: 50 }}>
-            </View>
-          </Animated.View>
+const Square = (props) => {
+  return (
+    <View style={{ backgroundColor: props.color, height: props.height, width: props.width }}>
+      <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+        <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.height, width: props.width }}>
         </View>
+      </Animated.View>
+    </View>
+  );
+}
+
+const Rectangle = (props) => {
+  return (       
+    <View style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
+      <Animated.View style={{ ...props.style,  opacity: props.fadeAnim }} >
+        <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.height }}>
+        </View>
+      </Animated.View>
+    </View>
+  );
+}
+
+const Circle = (props) => {
+  return (
+    <View style={{ flexDirection: 'row'}}>
+      <View style={{ backgroundColor: props.color, borderRadius: 50 }}>
+        <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+          <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+          </View>
+        </Animated.View>
       </View>
     </View>
-  )
-}
+  );
 }
 
 const styles = StyleSheet.create({
