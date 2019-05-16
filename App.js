@@ -56,6 +56,7 @@ export default class App extends Component<Props> {
       fadeAnim: new Animated.Value(0),  // Initial value for opacity: 0
     }
     this.fadeOut = this.fadeOut.bind(this);
+    this.fadeIn = this.fadeIn.bind(this);
   }
 
   componentDidMount () {
@@ -70,7 +71,7 @@ export default class App extends Component<Props> {
         duration: 1000,       // 2000ms
         easing: Easing.linear
       }
-    ).start(() => this.fadeOut());            
+    ).start(this.fadeOut);            
   }
 
   fadeOut() {
@@ -83,7 +84,7 @@ export default class App extends Component<Props> {
           duration: 1000,       // 2000ms
           easing: Easing.linear
         }
-      ).start(() => this.fadeIn());
+      ).start(this.fadeIn);
     })              // Starts the animation
   }
 
