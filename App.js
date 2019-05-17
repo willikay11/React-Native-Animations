@@ -48,7 +48,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size="110" loading={loading} color='e5e500' highlightColor='#cccc00'>
+            <SkeletonLoader type="square" size={110} loading={loading} color='e5e500' highlightColor='#cccc00'>
             <Image
               style={{width: 110, height: 110}}
               source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
@@ -56,7 +56,7 @@ export default class App extends Component {
             </SkeletonLoader>
           </View>
           <View style={{ flex: 2, flexDirection: 'column'}}>
-            <SkeletonLoader type="rectangle" rows="3" height="10" loading={loading}>
+            <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
               <Text>Platform: React Native</Text>
               <Text>Version: 0.59</Text>
               <Text>Company: Facebook</Text>
@@ -66,7 +66,7 @@ export default class App extends Component {
 
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size="110" loading={loading}>
+            <SkeletonLoader type="square" size={110} loading={loading}>
             <Image
               style={{width: 110, height: 110}}
               source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
@@ -74,7 +74,7 @@ export default class App extends Component {
             </SkeletonLoader>
           </View>
           <View style={{ flex: 2, flexDirection: 'column'}}>
-            <SkeletonLoader type="rectangle" rows="3" height="10" loading={loading}>
+            <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
               <Text>Platform: React Native</Text>
               <Text>Version: 0.59</Text>
               <Text>Company: Facebook</Text>
@@ -84,7 +84,7 @@ export default class App extends Component {
 
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
           <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size="110" loading={loading}>
+            <SkeletonLoader type="square" size={110} loading={loading}>
             <Image
               style={{width: 110, height: 110}}
               source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
@@ -92,7 +92,7 @@ export default class App extends Component {
             </SkeletonLoader>
           </View>
           <View style={{ flex: 2, flexDirection: 'column'}}>
-            <SkeletonLoader type="rectangle" rows="3" height="10" loading={loading}>
+            <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
               <Text>Platform: React Native</Text>
               <Text>Version: 0.59</Text>
               <Text>Company: Facebook</Text>
@@ -101,7 +101,7 @@ export default class App extends Component {
         </View>
 
         <View style={{ flexDirection: 'row', marginTop: 10 }}>
-          <SkeletonLoader type="circle" size="110" loading={loading}>
+          <SkeletonLoader type="circle" size={110} loading={loading}>
             <Image
                 style={{width: 110, height: 110}}
                 source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}

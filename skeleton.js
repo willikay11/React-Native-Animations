@@ -12,6 +12,7 @@ import {
   Animated,
   Easing,
 } from 'react-native'
+import PropTypes from 'prop-types'
 
 const defaultRows = 1;
 const defaultColor = '#dfdfdf';
@@ -152,7 +153,7 @@ const Circle = (props) => {
     if(props.loading) {
         return (
             <View style={{ backgroundColor: props.color, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
-                <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+                <Animated.View style={{ opacity: props.fadeAnim }} >
                     <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
                     </View>
                 </Animated.View>
@@ -162,3 +163,14 @@ const Circle = (props) => {
 
     return props.children;
 }
+
+
+Skeleton.propTypes = {
+    type: PropTypes.oneOf(['rectangle', 'square', 'circle']).isRequired,
+    loading: PropTypes.bool.isRequired,
+    size: PropTypes.number,
+    height: PropTypes.number,
+    color: PropTypes.string,
+    highlightColor: PropTypes.string,
+    rows: PropTypes.number,
+  }
