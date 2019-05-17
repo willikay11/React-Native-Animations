@@ -135,9 +135,18 @@ export default class App extends Component {
         </View>
 
           <View style={{ flexDirection: 'row', marginTop: 10 }}>
-          <SkeletonLoader type="circle" size={110} loading={loading}>
-            <Thumbnail large source={{uri: uri}} />
-          </SkeletonLoader>
+            <View style={{ flex: 1, flexDirection: 'column'}}>
+              <SkeletonLoader type="circle" size={110} loading={loading}>
+                <Thumbnail large source={require('./images/avatar-teen.jpg')} />
+              </SkeletonLoader>
+            </View>
+
+            <View style={{ flex: 2, flexDirection: 'column'}}>
+              <SkeletonLoader type="rectangle" rows={2} height={10} loading={loading}>
+                <Text style={{ fontWeight: 'bold', fontSize: 16 }}>John Doe</Text>
+                <Text style={{ fontWeight: '300', fontSize: 14 }}>Email: john.doe@gmail.com</Text>
+              </SkeletonLoader> 
+            </View>  
         </View>  
         </View>
       </View>
