@@ -47,6 +47,12 @@ function lightenOrDarkenColor(col, amt) {
   return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
 }
 
+const defaultRows = 1;
+const defaultColor = '#dfdfdf';
+const defaultCircleSize = 100;
+const defaultSquareSize = 100;
+const defaultRectangleHeight = 15;
+
 export default class Skeleton extends Component {
 
   constructor () {
@@ -97,19 +103,25 @@ export default class Skeleton extends Component {
 
     if (type === 'square') {
         return (
-            <Square fadeAnim={fadeAnim} color={color} size={size} />
+            <Square fadeAnim={fadeAnim} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultSquareSize} />
         );
     }
 
     if (type === 'circle') {
         return (
-            <Circle fadeAnim={fadeAnim} color={color} size={size} />
+            <Circle fadeAnim={fadeAnim} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultCircleSize} />
         );  
     }
 
     if (type === 'rectangle') {
-        for (let i = 0; i < parseInt(rows); i++) {
-            rectangles.push(<Rectangle key={i} fadeAnim={fadeAnim} color={color} height={height} />);
+        let rowCount = defaultRows;
+
+        if (rows > 0) {
+            rowCount = parseInt(rows);
+        }
+
+        for (let i = 0; i < rowCount; i++) {
+            rectangles.push(<Rectangle key={i} fadeAnim={fadeAnim} color={color ? color : defaultColor} height={height ? parseInt(height, 10) : defaultRectangleHeight} />);
         }
 
         return rectangles;

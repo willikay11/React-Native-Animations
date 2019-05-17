@@ -34,15 +34,15 @@ export default class App extends Component {
       <View style={styles.container}>
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size={120} color='#dfdfdf' />
+            <SkeletonLoader type="square" size="110" />
           </View>
           <View style={{ flex: 2, flexDirection: 'column'}}>
-            <SkeletonLoader type="rectangle" height={15} rows={5} color='#dfdfdf' />
+            <SkeletonLoader type="rectangle" rows="5" height="10" />
           </View>
         </View>
 
         <View style={{ flex: 1, flexDirection: 'row' }}>
-          <SkeletonLoader type="circle" size={100} color='#dfdfdf' />
+          <SkeletonLoader type="circle" size="110" />
         </View>  
       </View>
     );
