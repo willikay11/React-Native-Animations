@@ -48,7 +48,7 @@ export default class App extends Component {
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size="110" loading={loading}>
+            <SkeletonLoader type="square" size="110" loading={loading} color='e5e500' highlightColor='#cccc00'>
             <Image
               style={{width: 110, height: 110}}
               source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
