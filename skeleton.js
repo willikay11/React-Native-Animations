@@ -97,19 +97,17 @@ export default class Skeleton extends Component {
   render () {
     let { fadeAnim } = this.state;
 
-    let { type, size, color, height, rows } = this.props;
-
-    let rectangles = [];
+    let { type, size, color, height, rows, loading, children } = this.props;
 
     if (type === 'square') {
         return (
-            <Square fadeAnim={fadeAnim} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultSquareSize} />
+            <Square fadeAnim={fadeAnim} loading={loading} children={children} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultSquareSize} />
         );
     }
 
     if (type === 'circle') {
         return (
-            <Circle fadeAnim={fadeAnim} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultCircleSize} />
+            <Circle fadeAnim={fadeAnim} loading={loading} children={children} color={color ? color : defaultColor} size={size ? parseInt(size, 10) : defaultCircleSize} />
         );  
     }
 
@@ -120,46 +118,60 @@ export default class Skeleton extends Component {
             rowCount = parseInt(rows);
         }
 
-        for (let i = 0; i < rowCount; i++) {
-            rectangles.push(<Rectangle key={i} fadeAnim={fadeAnim} color={color ? color : defaultColor} height={height ? parseInt(height, 10) : defaultRectangleHeight} />);
-        }
-
-        return rectangles;
+        return <Rectangle fadeAnim={fadeAnim} loading={loading} children={children} rows={rowCount} color={color ? color : defaultColor} height={height ? parseInt(height, 10) : defaultRectangleHeight} />
     }
   }
 }
 
  Square = (props) => {
-  return (
-    <View style={{ backgroundColor: props.color, height: props.size, width: props.size }}>
-      <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
-        <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size }}>
-        </View>
-      </Animated.View>
-    </View>
-  );
+     if (props.loading) {
+         return (
+            <View style={{ backgroundColor: props.color, height: props.size, width: props.size }}>
+                <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+                    <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size }}>
+                    </View>
+                </Animated.View>
+            </View>
+        );
+     }
+
+     return props.children;
 }
 
 const Rectangle = (props) => {
-  return (       
-    <View style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
-      <Animated.View style={{ ...props.style,  opacity: props.fadeAnim }} >
-        <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.height }}>
-        </View>
-      </Animated.View>
-    </View>
-  );
+    if(props.loading) {
+
+        let rectangles = [];
+
+        for (let i = 0; i < props.rows; i++) {
+            rectangles.push(
+                <View key={i} style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
+                    <Animated.View style={{ ...props.style,  opacity: props.fadeAnim }} >
+                        <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.height }}>
+                        </View>
+                    </Animated.View>
+                </View>
+            );
+        }
+        return rectangles;
+    }
+
+    return props.children;
 }
 
 const Circle = (props) => {
-  return (
-    <View style={{ backgroundColor: props.color, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
-        <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
-            <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+    if(props.loading) {
+        return (
+            <View style={{ backgroundColor: props.color, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+                <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+                    <View style = {{ backgroundColor: lightenOrDarkenColor(props.color, -20), height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+                    </View>
+                </Animated.View>
             </View>
-        </Animated.View>
-    </View>
-  );
+        );  
+    }
+
+    return props.children;
 }
 
 const styles = StyleSheet.create({
