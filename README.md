@@ -25,7 +25,7 @@ The view that should be shown once loaded is wrapped in the skeleton loader!
 Props | Accepted Values | Required |Default
 ------------ | ------------- | -------------- | ----------------
 type | square, rectangle, circle | true | -
-loading | boolean | true |false
+loading | boolean | true | -
 size | number | false | 100
 height | number | false | 100
 color | string | false | '#dfdfdf'
