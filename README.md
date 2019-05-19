@@ -49,14 +49,14 @@ rows | number | false | 1
 </View>
 <View style={{ flex: 2, flexDirection: 'column'}}>
   <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}  color='ffa433' highlightColor='#ffbf70'>
-    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
-    <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
-    <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
+    <Text style={styles.boldText}>Luxembourg to Brussels</Text>
+    <Text style={styles.normalText}>Location: Luxembourg</Text>
+    <Text style={styles.normalText}>Distance: 1,200 Kms</Text>
     <Button 
       block 
       light
-      style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
-      <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
+      style={styles.button}>
+      <Text style={styles.buttonText}>Make a bid</Text>
     </Button>
   </SkeletonLoader> 
 </View>
