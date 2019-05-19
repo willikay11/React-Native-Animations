@@ -22,12 +22,12 @@ import SkeletonLoading from react-native-skeleton-loading;
 The view that should be shown once loaded is wrapped in the skeleton loader!
 
 ## Props
-Props | Accepted Values | Default
------------- | ------------- | --------------
-type | square, rectangle, circle | -
-loading | boolean | false
-size | number | 100
-height | number | 100
-color | string | '#dfdfdf'
-highlightColor | string | '#c8c8c8'
-rows | number | 1
+Props | Accepted Values | Required |Default
+------------ | ------------- | -------------- | ----------------
+type | square, rectangle, circle | true | -
+loading | boolean | true |false
+size | number | false | 100
+height | number | false | 100
+color | string | false | '#dfdfdf'
+highlightColor | string | false| '#c8c8c8'
+rows | number | false | 1
