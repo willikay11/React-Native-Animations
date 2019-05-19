@@ -19,4 +19,15 @@ import SkeletonLoading from react-native-skeleton-loading;
   />
 </SkeletonLoading>
 ```
-The view that should be shown once loader is wrapped in the skeleton loader!
+The view that should be shown once loaded is wrapped in the skeleton loader!
+
+## Props
+Props | Accepted Values | Default
+------------ | ------------- | --------------
+type | square, rectangle, circle | -
+loading | boolean | false
+size | number | 100
+height | number | 100
+color | string | '#dfdfdf'
+highlightColor | string | '#c8c8c8'
+rows | number | 1
