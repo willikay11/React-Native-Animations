@@ -40,7 +40,7 @@ rows | number | false | 1
   <Thumbnail large source={require('./images/avatar-teen.jpg')} />
 </SkeletonLoader>
 ```
-## Sqaure
+## Square
 ```
 <SkeletonLoader type="square" size={110} loading={loading}>
   <Image
