@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 
 import {
+  Text,
   View,
   Animated,
   Easing,
@@ -110,6 +111,8 @@ export default class Skeleton extends Component {
             height={height ? parseInt(height, 10) : defaultRectangleHeight} 
         />
     }
+
+    return null;
   }
 }
 
@@ -125,7 +128,7 @@ export default class Skeleton extends Component {
         );
      }
 
-     return props.children;
+     return props.children ? props.children : null;
 }
 
 const Rectangle = (props) => {
@@ -146,7 +149,7 @@ const Rectangle = (props) => {
         return rectangles;
     }
 
-    return props.children;
+    return props.children ? props.children : null;
 }
 
 const Circle = (props) => {
@@ -161,7 +164,7 @@ const Circle = (props) => {
         );  
     }
 
-    return props.children;
+    return props.children ? props.children : null;
 }
 
 
