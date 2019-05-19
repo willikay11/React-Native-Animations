@@ -1,6 +1,8 @@
 # React Native Skeleton Loading
 Skeleton loaders give the user a perception that loading has taken a shorter period.
 
+![](React-native-skeleton-loading.gif)
+
 ##  Installation
 ```
 npm install react-native-skeleton-loading
