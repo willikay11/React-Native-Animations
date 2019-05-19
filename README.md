@@ -1,5 +1,5 @@
 # React Native Skeleton Loading
-Skeleton loaders gives the user a perception that loading has taken a shorter period.
+Skeleton loaders give the user a perception that loading has taken a shorter period.
 
 ##  Installation
 ```
@@ -19,4 +19,4 @@ import SkeletonLoading from react-native-skeleton-loading;
   />
 </SkeletonLoading>
 ```
-
+The view that should be shown once loader is wrapped in the skeleton loader!
