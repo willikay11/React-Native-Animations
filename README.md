@@ -36,6 +36,31 @@ rows | number | false | 1
 
 ## Color and Highlight Color
 ![](React-native-skeleton-loading-colors.gif)
+
+```
+<View style={{ flex: 1, flexDirection: 'column'}}>
+  <SkeletonLoader type="square" size={110} loading={loading} color='ffa433' highlightColor='#ffbf70'>
+    <Image
+      style={{width: 90, height: 90, alignSelf:'center'}}
+      source={require('./images/truck.png')}
+      resizeMode="contain"
+    />
+  </SkeletonLoader>
+</View>
+<View style={{ flex: 2, flexDirection: 'column'}}>
+  <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}  color='ffa433' highlightColor='#ffbf70'>
+    <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
+    <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
+    <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
+    <Button 
+      block 
+      light
+      style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
+      <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
+    </Button>
+  </SkeletonLoader> 
+</View>
+```
 ## Circle
 ```
 <SkeletonLoader type="circle" size={110} loading={loading}>
