@@ -31,3 +31,36 @@ height | number | false | 100
 color | string | false | #dfdfdf
 highlightColor | string | false| #c8c8c8
 rows | number | false | 1
+
+## Color and Highlight Color
+
+## Circle
+```
+<SkeletonLoader type="circle" size={110} loading={loading}>
+  <Thumbnail large source={require('./images/avatar-teen.jpg')} />
+</SkeletonLoader>
+```
+## Sqaure
+```
+<SkeletonLoader type="square" size={110} loading={loading}>
+  <Image
+    style={{width: 90, height: 90, alignSelf:'center'}}
+    source={require('./images/truck.png')}
+    resizeMode="contain"
+  />
+</SkeletonLoader>
+```
+## Rectangle
+```
+<SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
+  <Text style={styles.boldText}>Luxembourg to Brussels</Text>
+  <Text style={styles.normalText}>Location: Luxembourg</Text>
+  <Text style={styles.normalText}>Distance: 1,200 Kms</Text>
+  <Button 
+    block 
+    light
+    style={styles.button}>
+    <Text style={styles.buttonText}>Make a bid</Text>
+  </Button>
+</SkeletonLoader>  
+```
