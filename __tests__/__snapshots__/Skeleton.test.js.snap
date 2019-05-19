@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Skeleton loading Rendering should match to snapshot - circle 1`] = `ShallowWrapper {}`;
+
+exports[`Skeleton loading Rendering should match to snapshot - rectange 1`] = `ShallowWrapper {}`;
+
+exports[`Skeleton loading Rendering should match to snapshot - square 1`] = `ShallowWrapper {}`;
+
+exports[`Skeleton loading Rendering should match to snapshot 1`] = `ShallowWrapper {}`;
