@@ -35,7 +35,7 @@ highlightColor | string | false| #c8c8c8
 rows | number | false | 1
 
 ## Color and Highlight Color
-
+![](React-native-skeleton-loading-colors.gif)
 ## Circle
 ```
 <SkeletonLoader type="circle" size={110} loading={loading}>
