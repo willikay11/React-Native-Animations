@@ -28,6 +28,6 @@ type | square, rectangle, circle | true | -
 loading | boolean | true | -
 size | number | false | 100
 height | number | false | 100
-color | string | false | '#dfdfdf'
-highlightColor | string | false| '#c8c8c8'
+color | string | false | #dfdfdf
+highlightColor | string | false| #c8c8c8
 rows | number | false | 1
