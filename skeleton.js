@@ -120,7 +120,7 @@ export default class Skeleton extends Component {
      if (props.loading) {
          return (
             <View style={{ backgroundColor: props.color, height: props.size, width: props.size }}>
-                <Animated.View style={{ ...props.style, opacity: props.fadeAnim }} >
+                <Animated.View style={{ opacity: props.fadeAnim }} >
                     <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size }}>
                     </View>
                 </Animated.View>
@@ -139,7 +139,7 @@ const Rectangle = (props) => {
         for (let i = 0; i < props.rows; i++) {
             rectangles.push(
                 <View key={i} style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
-                    <Animated.View style={{ ...props.style,  opacity: props.fadeAnim }} >
+                    <Animated.View style={{ opacity: props.fadeAnim }} >
                         <View style = {{ backgroundColor: props.highlightColor, height: props.height }}>
                         </View>
                     </Animated.View>
