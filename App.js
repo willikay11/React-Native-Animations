@@ -18,7 +18,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import {Button, Header, Left, Right, Icon, Body, Title, Thumbnail} from 'native-base';
-import SkeletonLoader from 'react-native-skeleton-loader';
+import SkeletonLoader from './skeleton';
 
 export default class App extends Component {
 
@@ -61,6 +61,60 @@ export default class App extends Component {
         <View style={{ padding: 10 }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1, flexDirection: 'column'}}>
+              <SkeletonLoader type="square" size={110} loading={loading} color='#ffa433' highlightColor='#ffd199'>
+                <Image
+                  style={{width: 90, height: 90, alignSelf:'center'}}
+                  source={require('./images/truck.png')}
+                  resizeMode="contain"
+                />
+              </SkeletonLoader>
+            </View>
+            <View style={{ flex: 2, flexDirection: 'column'}}>
+              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}  color='#ffa433' highlightColor='#ffd199'>
+                <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
+                <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
+                <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
+              </SkeletonLoader> 
+              <SkeletonLoader type="custom" loading={loading} color='#FFA433' highlightColor='#ffd199' style={{ height: 35, width: '100%', borderRadius: 2 }}>
+                  <Button 
+                      block 
+                      light
+                      style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
+                      <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
+                  </Button>
+                </SkeletonLoader>
+            </View>
+        </View>
+
+          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+            <View style={{ flex: 1, flexDirection: 'column'}}>
+              <SkeletonLoader type="square" size={110} loading={loading}>
+              <Image
+                style={{width: 90, height: 90, alignSelf:'center'}}
+                source={require('./images/truck.png')}
+                resizeMode="contain"
+              />
+              </SkeletonLoader>
+            </View>
+            <View style={{ flex: 2, flexDirection: 'column'}}>
+              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
+                <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
+                <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
+                <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
+              </SkeletonLoader>
+              <SkeletonLoader type="custom" loading={loading} style={{ height: 35, width: '100%', borderRadius: 2 }}>
+                <Button 
+                    block 
+                    light
+                    style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
+                    <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
+                </Button>
+              </SkeletonLoader>
+            </View>
+          </View>
+
+          <View style={{ flexDirection: 'row', marginTop: 10 }}>
+            <View style={{ flex: 1, flexDirection: 'column'}}>
               <SkeletonLoader type="square" size={110} loading={loading}>
                 <Image
                   style={{width: 90, height: 90, alignSelf:'center'}}
@@ -70,69 +124,21 @@ export default class App extends Component {
               </SkeletonLoader>
             </View>
             <View style={{ flex: 2, flexDirection: 'column'}}>
-              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}  color='ffa433' highlightColor='#ffbf70'>
-                <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
-                <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
-                <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
+              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
+                <Text style={styles.boldText}>Luxembourg to Brussels</Text>
+                <Text style={styles.normalText}>Location: Luxembourg</Text>
+                <Text style={styles.normalText}>Distance: 1,200 Kms</Text>
+              </SkeletonLoader>
+              <SkeletonLoader type="custom" loading={loading} style={{ height: 35, width: '100%', borderRadius: 2 }}>
                 <Button 
-                  block 
-                  light
-                  style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
-                  <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
+                    block 
+                    light
+                    style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
+                    <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
                 </Button>
-              </SkeletonLoader> 
+              </SkeletonLoader>
             </View>
-        </View>
-
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
-          <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size={110} loading={loading}>
-            <Image
-              style={{width: 90, height: 90, alignSelf:'center'}}
-              source={require('./images/truck.png')}
-              resizeMode="contain"
-            />
-            </SkeletonLoader>
           </View>
-          <View style={{ flex: 2, flexDirection: 'column'}}>
-            <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
-              <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
-              <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
-              <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
-              <Button 
-                block 
-                light
-                style={{ marginTop: 10, backgroundColor: 'transparent', borderWidth: 1, borderColor: '#FFA433', elevation: 0, height: 30}}>
-                <Text style={{ color: '#FFA433', fontSize: 12 }}>Make a bid</Text>
-              </Button>
-            </SkeletonLoader>    
-          </View>
-        </View>
-
-          <View style={{ flexDirection: 'row', marginTop: 10 }}>
-          <View style={{ flex: 1, flexDirection: 'column'}}>
-            <SkeletonLoader type="square" size={110} loading={loading}>
-              <Image
-                style={{width: 90, height: 90, alignSelf:'center'}}
-                source={require('./images/truck.png')}
-                resizeMode="contain"
-              />
-            </SkeletonLoader>
-          </View>
-          <View style={{ flex: 2, flexDirection: 'column'}}>
-          <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
-            <Text style={styles.boldText}>Luxembourg to Brussels</Text>
-            <Text style={styles.normalText}>Location: Luxembourg</Text>
-            <Text style={styles.normalText}>Distance: 1,200 Kms</Text>
-            <Button 
-              block 
-              light
-              style={styles.button}>
-              <Text style={styles.buttonText}>Make a bid</Text>
-            </Button>
-          </SkeletonLoader>   
-          </View>
-        </View>
 
           <View style={{ flexDirection: 'row', marginTop: 10 }}>
             <View style={{ flex: 1, flexDirection: 'column'}}>
@@ -147,7 +153,7 @@ export default class App extends Component {
                 <Text style={{ fontWeight: '300', fontSize: 14 }}>Email: john.doe@gmail.com</Text>
               </SkeletonLoader> 
             </View>  
-        </View>  
+          </View>
         </View>
       </View>
     );

@@ -54,7 +54,7 @@ export default class Skeleton extends Component {
       Animated.timing(          
         this.state.fadeAnim, 
         {
-          toValue: 0.2,      
+          toValue: 0,      
           duration: 1000,    
           easing: Easing.linear
         }
@@ -66,32 +66,36 @@ export default class Skeleton extends Component {
   render () {
     let { fadeAnim } = this.state;
 
-    let { type, size, color, highlightColor, height, rows, loading, children } = this.props;
+    let { type, size, color, highlightColor, height, rows, loading, children, style } = this.props;
+
+    if(style && style.backgroundColor) {
+      style = delete style.backgroundColor;
+    }
 
     if (type === 'square') {
-        return (
-            <Square 
-                fadeAnim={fadeAnim} 
-                loading={loading} 
-                children={children} 
-                color={color ? color : defaultColor} 
-                highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
-                size={size ? parseInt(size, 10) : defaultSquareSize} 
-            />
-        );
+      return (
+        <Square 
+          fadeAnim={fadeAnim} 
+          loading={loading} 
+          children={children} 
+          color={color ? color : defaultColor} 
+          highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
+          size={size ? parseInt(size, 10) : defaultSquareSize} 
+        />
+      );
     }
 
     if (type === 'circle') {
-        return (
-            <Circle 
-                fadeAnim={fadeAnim} 
-                loading={loading} 
-                children={children} 
-                color={color ? color : defaultColor} 
-                highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
-                size={size ? parseInt(size, 10) : defaultCircleSize} 
-            />
-        );  
+      return (
+        <Circle 
+          fadeAnim={fadeAnim} 
+          loading={loading} 
+          children={children} 
+          color={color ? color : defaultColor} 
+          highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
+          size={size ? parseInt(size, 10) : defaultCircleSize} 
+        />
+      );  
     }
 
     if (type === 'rectangle') {
@@ -102,30 +106,41 @@ export default class Skeleton extends Component {
         }
 
         return <Rectangle 
-            fadeAnim={fadeAnim} 
-            loading={loading} 
-            children={children} 
-            rows={rowCount} 
-            color={color ? color : defaultColor}
-            highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
-            height={height ? parseInt(height, 10) : defaultRectangleHeight} 
+          fadeAnim={fadeAnim} 
+          loading={loading} 
+          children={children} 
+          rows={rowCount} 
+          color={color ? color : defaultColor}
+          highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
+          height={height ? parseInt(height, 10) : defaultRectangleHeight} 
         />
+    }
+
+    if(type === 'custom') {
+      return <Custom
+        fadeAnim={fadeAnim} 
+        loading={loading} 
+        children={children} 
+        color={color ? color : defaultColor}
+        highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
+        style={style}
+      />
     }
 
     return null;
   }
 }
 
- Square = (props) => {
+const Square = (props) => {
      if (props.loading) {
-         return (
-            <View style={{ backgroundColor: props.color, height: props.size, width: props.size }}>
-                <Animated.View style={{ opacity: props.fadeAnim }} >
-                    <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size }}>
-                    </View>
-                </Animated.View>
-            </View>
-        );
+      return (
+        <View style={{ backgroundColor: props.color, height: props.size, width: props.size }}>
+          <Animated.View style={{ opacity: props.fadeAnim }} >
+              <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size }}>
+              </View>
+          </Animated.View>
+        </View>
+      );
      }
 
      return props.children ? props.children : null;
@@ -134,19 +149,19 @@ export default class Skeleton extends Component {
 const Rectangle = (props) => {
     if(props.loading) {
 
-        let rectangles = [];
+      let rectangles = [];
 
-        for (let i = 0; i < props.rows; i++) {
-            rectangles.push(
-                <View key={i} style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
-                    <Animated.View style={{ opacity: props.fadeAnim }} >
-                        <View style = {{ backgroundColor: props.highlightColor, height: props.height }}>
-                        </View>
-                    </Animated.View>
+      for (let i = 0; i < props.rows; i++) {
+          rectangles.push(
+            <View key={i} style={{ backgroundColor: props.color, marginBottom: 10 }}>
+              <Animated.View style={{ opacity: props.fadeAnim }} >
+                <View style = {{ backgroundColor: props.highlightColor, height: props.height }}>
                 </View>
-            );
-        }
-        return rectangles;
+              </Animated.View>
+            </View>
+          );
+      }
+      return rectangles;
     }
 
     return props.children ? props.children : null;
@@ -155,25 +170,40 @@ const Rectangle = (props) => {
 const Circle = (props) => {
     if(props.loading) {
         return (
-            <View style={{ backgroundColor: props.color, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
-                <Animated.View style={{ opacity: props.fadeAnim }} >
-                    <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
-                    </View>
-                </Animated.View>
-            </View>
+          <View style={{ backgroundColor: props.color, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+            <Animated.View style={{ opacity: props.fadeAnim }} >
+              <View style = {{ backgroundColor: props.highlightColor, height: props.size, width: props.size, borderRadius: parseInt(props.size, 10)/2 }}>
+              </View>
+            </Animated.View>
+          </View>
         );  
     }
 
     return props.children ? props.children : null;
 }
 
+const Custom = (props) => {
+  if(props.loading) {
+    return (
+      <View style={{ backgroundColor: props.color, ...props.style }}>
+        <Animated.View style={{ opacity: props.fadeAnim }} >
+          <View style = {{ backgroundColor: props.highlightColor, ...props.style }}>
+          </View>
+        </Animated.View>
+      </View>
+    );
+  }
+
+  return props.children ? props.children : null;
+}
 
 Skeleton.propTypes = {
-  type: PropTypes.oneOf(['rectangle', 'square', 'circle']).isRequired,
+  type: PropTypes.oneOf(['rectangle', 'square', 'circle', 'custom']).isRequired,
   loading: PropTypes.bool.isRequired,
   size: PropTypes.number,
   height: PropTypes.number,
   color: PropTypes.string,
   highlightColor: PropTypes.string,
   rows: PropTypes.number,
+  style: PropTypes.object,
 }
