@@ -61,7 +61,7 @@ export default class App extends Component {
         <View style={{ padding: 10 }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1, flexDirection: 'column'}}>
-              <SkeletonLoader type="square" size={110} loading={loading} color='#ffa433' highlightColor='#ffd199'>
+              <SkeletonLoader type="square" size={110} loading={loading} color='#ffa433' highlightColor='#ffd199' style={{ borderRadius: 10 }}>
                 <Image
                   style={{width: 90, height: 90, alignSelf:'center'}}
                   source={require('./images/truck.png')}
@@ -97,7 +97,7 @@ export default class App extends Component {
               </SkeletonLoader>
             </View>
             <View style={{ flex: 2, flexDirection: 'column'}}>
-              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading}>
+              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading} style={{ borderRadius: 10 }}>
                 <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
                 <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
                 <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>
@@ -142,7 +142,7 @@ export default class App extends Component {
 
           <View style={{ flexDirection: 'row', marginTop: 10 }}>
             <View style={{ flex: 1, flexDirection: 'column'}}>
-              <SkeletonLoader type="circle" size={110} loading={loading}>
+              <SkeletonLoader type="circle" size={110} loading={loading} >
                 <Thumbnail large source={require('./images/avatar-teen.jpg')} />
               </SkeletonLoader>
             </View>
