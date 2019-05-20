@@ -169,11 +169,11 @@ const Circle = (props) => {
 
 
 Skeleton.propTypes = {
-    type: PropTypes.oneOf(['rectangle', 'square', 'circle']).isRequired,
-    loading: PropTypes.bool.isRequired,
-    size: PropTypes.number,
-    height: PropTypes.number,
-    color: PropTypes.string,
-    highlightColor: PropTypes.string,
-    rows: PropTypes.number,
-  }
+  type: PropTypes.oneOf(['rectangle', 'square', 'circle']).isRequired,
+  loading: PropTypes.bool.isRequired,
+  size: PropTypes.number,
+  height: PropTypes.number,
+  color: PropTypes.string,
+  highlightColor: PropTypes.string,
+  rows: PropTypes.number,
+}

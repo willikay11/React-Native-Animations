@@ -18,7 +18,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 import {Button, Header, Left, Right, Icon, Body, Title, Thumbnail} from 'native-base';
-import SkeletonLoader from './skeleton';
+import SkeletonLoader from 'react-native-skeleton-loader';
 
 export default class App extends Component {
 
@@ -61,7 +61,7 @@ export default class App extends Component {
         <View style={{ padding: 10 }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1, flexDirection: 'column'}}>
-              <SkeletonLoader type="square" size={110} loading={loading} color='ffa433' highlightColor='#ffbf70'>
+              <SkeletonLoader type="square" size={110} loading={loading}>
                 <Image
                   style={{width: 90, height: 90, alignSelf:'center'}}
                   source={require('./images/truck.png')}
