@@ -12,20 +12,18 @@ import {
   View,
   Animated,
   Easing,
-} from 'react-native'
-import PropTypes from 'prop-types'
+} from 'react-native';
+import PropTypes from 'prop-types';
 
 const defaultRows = 1;
 const defaultColor = '#dfdfdf';
 const defaultHighlightColor = '#c8c8c8';
 const defaultCircleSize = 100;
 const defaultSquareSize = 100;
-const defaultRectangleHeight = 15;
+const defaultRectangleHeight = 10;
 const defaultRectangleWidth = '100%';
 const defaultRectangleMargin = 10;
-const blacklistedStyles = [
-  'margin', 'padding'
-];
+
 export default class Skeleton extends Component {
 
   constructor () {
@@ -118,7 +116,7 @@ export default class Skeleton extends Component {
           rows={rowCount} 
           color={color ? color : defaultColor}
           highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
-          height={height ? parseInt(height, 10) : defaultRectangleHeight}
+          height={height ? height : defaultRectangleHeight}
           width={width ? width : defaultRectangleWidth}
           margin={marginBottom ? parseInt(marginBottom, 10) : defaultRectangleMargin} 
           style={style}
@@ -178,10 +176,21 @@ const Rectangle = (props) => {
     }
 
     for (let i = 0; i < props.rows; i++) {
+      let width = props.width;
+      let height = props.height;      
+
+      if(Array.isArray(props.width)) {
+        width = props.width[i];
+      }
+
+      if(Array.isArray(props.height)) {
+        height = props.height[i] != undefined ? props.height[i] : defaultRectangleHeight;
+      }
+
       rectangles.push(
-        <View key={i} style={{ backgroundColor: props.color, width: props.width, marginBottom: props.margin, ...style }}>
+        <View key={i} style={{ backgroundColor: props.color, width, marginBottom: props.margin, ...style }}>
           <Animated.View style={{ opacity: props.fadeAnim }} >
-            <View style = {{ backgroundColor: props.highlightColor, height: props.height, ...newStyle }} />
+            <View style = {{ backgroundColor: props.highlightColor, height: height, ...newStyle }} />
           </Animated.View>
         </View>
       );
@@ -224,7 +233,7 @@ Skeleton.propTypes = {
   type: PropTypes.oneOf(['rectangle', 'square', 'circle', 'custom']).isRequired,
   loading: PropTypes.bool.isRequired,
   size: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.array,
   color: PropTypes.string,
   highlightColor: PropTypes.string,
   rows: PropTypes.number,
