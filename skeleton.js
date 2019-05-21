@@ -171,8 +171,6 @@ const Rectangle = (props) => {
           style[key] = props.style[key];
         }
       });
-
-      console.warn(style);
     }
 
     let rectangles = [];
