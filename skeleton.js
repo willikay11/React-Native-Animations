@@ -21,6 +21,7 @@ const defaultHighlightColor = '#c8c8c8';
 const defaultCircleSize = 100;
 const defaultSquareSize = 100;
 const defaultRectangleHeight = 15;
+const defaultRectangleMargin = 10;
 
 export default class Skeleton extends Component {
 
@@ -66,7 +67,7 @@ export default class Skeleton extends Component {
   render () {
     let { fadeAnim } = this.state;
 
-    let { type, size, color, highlightColor, height, rows, loading, children, style } = this.props;
+    let { type, size, color, highlightColor, height, rows, loading, children, marginBottom, style } = this.props;
 
     if(style && style.backgroundColor) {
       style = delete style.backgroundColor;
@@ -115,6 +116,7 @@ export default class Skeleton extends Component {
           color={color ? color : defaultColor}
           highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
           height={height ? parseInt(height, 10) : defaultRectangleHeight}
+          margin={marginBottom ? parseInt(marginBottom, 10) : defaultRectangleMargin} 
           style={style}
         />
     }
@@ -155,7 +157,7 @@ const Rectangle = (props) => {
 
     for (let i = 0; i < props.rows; i++) {
       rectangles.push(
-        <View key={i} style={{ backgroundColor: props.color, marginBottom: 10, ...props.style }}>
+        <View key={i} style={{ backgroundColor: props.color, marginBottom: props.margin, ...props.style }}>
           <Animated.View style={{ opacity: props.fadeAnim }} >
             <View style = {{ backgroundColor: props.highlightColor, height: props.height, ...props.style }}>
             </View>
@@ -205,5 +207,6 @@ Skeleton.propTypes = {
   color: PropTypes.string,
   highlightColor: PropTypes.string,
   rows: PropTypes.number,
+  marginBottom: PropTypes.number,
   style: PropTypes.object,
 }
