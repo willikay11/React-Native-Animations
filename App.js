@@ -70,7 +70,7 @@ export default class App extends Component {
               </SkeletonLoader>
             </View>
             <View style={{ flex: 2, flexDirection: 'column'}}>
-              <SkeletonLoader type="rectangle" rows={3} height={10} loading={loading} style={{ width: '50%' }} color='#ffa433' highlightColor='#ffd199'>
+              <SkeletonLoader type="rectangle" rows={3} height={10} width={'60%'} loading={loading} color='#ffa433' highlightColor='#ffd199'>
                 <Text style={{ fontWeight: 'bold', fontSize: 16 }}>Luxembourg to Brussels</Text>
                 <Text style={{ fontWeight: '300', fontSize: 14 }}>Location: Luxembourg</Text>
                 <Text style={{ fontWeight: '300', fontSize: 14 }}>Distance: 1,200 Kms</Text>

@@ -21,6 +21,7 @@ const defaultHighlightColor = '#c8c8c8';
 const defaultCircleSize = 100;
 const defaultSquareSize = 100;
 const defaultRectangleHeight = 15;
+const defaultRectangleWidth = '100%';
 const defaultRectangleMargin = 10;
 const blacklistedStyles = [
   'margin', 'padding'
@@ -69,7 +70,7 @@ export default class Skeleton extends Component {
   render () {
     let { fadeAnim } = this.state;
 
-    let { type, size, color, highlightColor, height, rows, loading, children, marginBottom, style } = this.props;
+    let { type, size, color, highlightColor, height, width, rows, loading, children, marginBottom, style } = this.props;
 
     if(style && style.backgroundColor) {
       style = delete style.backgroundColor;
@@ -118,6 +119,7 @@ export default class Skeleton extends Component {
           color={color ? color : defaultColor}
           highlightColor={highlightColor ? highlightColor : defaultHighlightColor} 
           height={height ? parseInt(height, 10) : defaultRectangleHeight}
+          width={width ? width : defaultRectangleWidth}
           margin={marginBottom ? parseInt(marginBottom, 10) : defaultRectangleMargin} 
           style={style}
         />
@@ -174,10 +176,10 @@ const Rectangle = (props) => {
         }
       });
     }
-    
+
     for (let i = 0; i < props.rows; i++) {
       rectangles.push(
-        <View key={i} style={{ backgroundColor: props.color, marginBottom: props.margin, ...style }}>
+        <View key={i} style={{ backgroundColor: props.color, width: props.width, marginBottom: props.margin, ...style }}>
           <Animated.View style={{ opacity: props.fadeAnim }} >
             <View style = {{ backgroundColor: props.highlightColor, height: props.height, ...newStyle }} />
           </Animated.View>
