@@ -22,7 +22,9 @@ const defaultCircleSize = 100;
 const defaultSquareSize = 100;
 const defaultRectangleHeight = 15;
 const defaultRectangleMargin = 10;
-
+const blacklistedStyles = [
+  'margin', 'padding'
+];
 export default class Skeleton extends Component {
 
   constructor () {
@@ -153,14 +155,33 @@ const Square = (props) => {
 const Rectangle = (props) => {
   if(props.loading) {
 
+    let newStyle = {};
+    let style = {};
+
+    if (props.style) {
+      Object.keys(props.style).forEach(function(key) {
+        const found = /margin/.test(key);
+        const paddingFound = /padding/.test(key);
+
+        if (!found && !paddingFound) {
+          newStyle[key] = props.style[key];
+        }
+
+        if(!paddingFound) {
+          style[key] = props.style[key];
+        }
+      });
+
+      console.warn(style);
+    }
+
     let rectangles = [];
 
     for (let i = 0; i < props.rows; i++) {
       rectangles.push(
-        <View key={i} style={{ backgroundColor: props.color, marginBottom: props.margin, ...props.style }}>
+        <View key={i} style={{ backgroundColor: props.color, marginBottom: props.margin, ...style }}>
           <Animated.View style={{ opacity: props.fadeAnim }} >
-            <View style = {{ backgroundColor: props.highlightColor, height: props.height, ...props.style }}>
-            </View>
+            <View style = {{ backgroundColor: props.highlightColor, height: props.height, ...newStyle }} />
           </Animated.View>
         </View>
       );
