@@ -157,13 +157,15 @@ const Rectangle = (props) => {
 
     let newStyle = {};
     let style = {};
+    let rectangles = [];
 
     if (props.style) {
       Object.keys(props.style).forEach(function(key) {
         const found = /margin/.test(key);
         const paddingFound = /padding/.test(key);
+        const widthFound = /width/.test(key);
 
-        if (!found && !paddingFound) {
+        if (!found && !paddingFound && !widthFound) {
           newStyle[key] = props.style[key];
         }
 
@@ -172,9 +174,7 @@ const Rectangle = (props) => {
         }
       });
     }
-
-    let rectangles = [];
-
+    
     for (let i = 0; i < props.rows; i++) {
       rectangles.push(
         <View key={i} style={{ backgroundColor: props.color, marginBottom: props.margin, ...style }}>
