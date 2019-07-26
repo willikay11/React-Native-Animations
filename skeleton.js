@@ -135,9 +135,9 @@ const Rectangle = (props) => {
 
         for (let i = 0; i < props.rows; i++) {
             rectangles.push(
-                <View key={i} style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10 }}>
+                <View key={i} style={{ backgroundColor: props.color, marginLeft: 5, marginBottom: 10, width: '100%' }}>
                     <Animated.View style={{ ...props.style,  opacity: props.fadeAnim }} >
-                        <View style = {{ backgroundColor: props.highlightColor, height: props.height }}>
+                        <View style = {{ backgroundColor: props.highlightColor, height: props.height, width: '100%' }}>
                         </View>
                     </Animated.View>
                 </View>
